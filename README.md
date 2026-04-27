@@ -1,0 +1,1 @@
+# emna_project_django
