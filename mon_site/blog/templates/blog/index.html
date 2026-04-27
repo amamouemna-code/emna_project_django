@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Super Blog Django</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">Mon Blog Django</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h1 class="mb-4 text-primary">Derniers Articles</h1>
+                
+                {% for article in articles %}
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ article.titre }}</h2>
+
+                            {% if article.image %}
+                             <img src="{{ article.image.url }}" class="img-fluid rounded mb-3" alt="{{ article.titre }}">
+                            {% endif %}
+
+                            <p class="card-text text-muted">{{ article.contenu|linebreaks }}</p>
+                            <div class="text-end">
+                                <small class="text-secondary">Publié le : {{ article.date_publication|date:"d M Y" }}</small>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="alert alert-info">
+                        C'est vide ici... Ajoute des articles via <a href="/admin">l'administration</a> !
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
